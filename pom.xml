@@ -3,32 +3,41 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>myCup</groupId>
     <artifactId>myCup</artifactId>
     <version>1.0</version>
-
-    <!--<groupId>myCup.myCup</groupId>-->
-    <!--<artifactId>site</artifactId>-->
-    <!--<version>1.0-SNAPSHOT</version>-->
-
-
+    <packaging>war</packaging>
 
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
             <resource>
                 <directory>${basedir}/src/main/java</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                </includes>
             </resource>
         </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
-                <version>2.0</version>
+                <version>2.5</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.0.2</version>
+                <configuration>
+                    <source>1.6.0</source>
+                    <target>1.6.0</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+              </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.1.1</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
             </plugin>
         </plugins>
         <finalName>myCupArtifactId-version</finalName>
@@ -41,21 +50,4 @@
             <url>https://github.com/mariianikonova/MyCup.git</url>
         </repository>
     </repositories>
-
-    <!--<groupId>ru.apache-maven</groupId>-->
-    <!--<artifactId>webAppMyCup</artifactId>-->
-    <!--<version>1.0</version>-->
-
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-archetype:plugin</artifactId>
-        <version></version>
-    </plugin>
-
-    <!--<modules>-->
-        <!--<module>MainFunc</module>-->
-        <!--<module>SharingFunc</module>-->
-    <!--</modules>-->
-
-
 </project>
