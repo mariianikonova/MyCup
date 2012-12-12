@@ -1,20 +1,14 @@
-<%--import java.io.IOException;--%>
-<%--import javax.servlet.ServletException;--%>
-<%--import javax.servlet.ServletRequest;--%>
-<%--import javax.servlet.ServletResponse;--%>
-<%--!--%>
 <%
     String username = request.getParameter("userId");
     String password = request.getParameter("password");
-    if (username == null || password == null) {
-        out.println("Invalid parameters");
-    }
+    if (username == "" || password == "") {
+        out.println("Invalid parameters<br/>");
+            }
 
-    if (username.toLowerCase().trim().equals("admin") && password.toLowerCase().trim().equals("admin")) {
-        out.println("Authentication successful");
+    if (username.toLowerCase().trim().equals("admin") && password.trim().equals("admin")) {
+        out.println("Authentication successful<br/>");
     }
-    else
-    {
-        out.println("Authentication failed");
+    else {
+        out.println("Authentication failed<br/>");
     }
-     %>
+%>

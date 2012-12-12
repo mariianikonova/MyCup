@@ -3,6 +3,17 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
 
+  <!--<welcome-file-list>-->
+    <!--<welcome-file>TestJsp.jsp</welcome-file>-->
+  <!--</welcome-file-list>-->
+  <!--<servlet>-->
+    <!--<servlet-name>myCup-1.0-SNAPSHOT</servlet-name>-->
+    <!--<jsp-file>/myCup-1.0-SNAPSHOT/TestJsp.jsp</jsp-file>-->
+  <!--</servlet>-->
 
+  <!--<servlet-mapping>-->
+    <!--<servlet-name>myCup-1.0-SNAPSHOT</servlet-name>-->
+    <!--<url-pattern>/myCup-1.0-SNAPSHOT/*</url-pattern>-->
+  <!--</servlet-mapping>-->
 
 </web-app>

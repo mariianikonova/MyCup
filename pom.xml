@@ -16,8 +16,7 @@
   </properties>
 
   <build>
-    <finalName>/myCup-${version}</finalName>
-    <!--<finalName>ROOT.war</finalName>-->
+   <finalName>ROOT.war</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
