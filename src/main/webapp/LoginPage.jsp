@@ -1,5 +1,5 @@
 <!doctype html public "-//w3c//dtd html 4.0 transitional//en">
-
+<html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <style type="text/css">
@@ -21,7 +21,8 @@
 
 </head>
 <body>
-<form method="post" action="LoginPageChecker.jsp">
+
+    <form method="post" action="/LoginHandler">
 
 <div class="leftSection">
      <div class="mainFontRules" style="align:center; margin:3px">
@@ -31,11 +32,11 @@
 <div class="rightSection">
     <div style="height: 30%"></div>
     <div class="mainFontRules" style="margin:3px; width:230">
-        &nbspUser Id <br>
+        &nbsp;User Id <br>
         <input type="text" name="userId" size="24" style="; margin:3px;"/>    <br>
     </div>
     <div class="mainFontRules" style="margin:3px; width:230">
-        &nbspPassword<br>
+        &nbsp;Password<br>
         <input type="password" name="password" size="24" minlength="6" style="margin:3px;"/>
     <div>
         <input type="submit" name="submitButton" value="Login"  style="margin:5px; float:right;" class="buttons"/>
@@ -44,7 +45,7 @@
 
     <p>
     <div class="smallerFontRules" style="margin:3px,5px" >
-    &nbspRemember Me
+    &nbsp;Remember Me
     <input type="checkbox" name="rememberMe" value="remembered"/>
     </div>
     <p>
