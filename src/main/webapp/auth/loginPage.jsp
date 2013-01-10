@@ -88,27 +88,19 @@
         </div>
 
         <c:if test="${not empty requestScope.errors}">
-        <br/>
+            <br/>
 
-        <div style="color: red">
-        <ul>
-        <c:forEach items="${requestScope.errors}" var="error">
-        <li>${error}</li>
-        </c:forEach>
-        </ul>
-        </div>
+            <div style="color: red">
+                <ul>
+                    <c:forEach items="${requestScope.errors}" var="error">
+                        <li>${error}</li>
+                    </c:forEach>
+                </ul>
+            </div>
         </c:if>
     </div>
     <div id="footer">
     </div>
 </form>
-<%--<%--%>
-    <%--List<String> errors;--%>
-    <%--errors = (List<String>) request.getAttribute("errors");--%>
-    <%--if (!errors.isEmpty()) {--%>
-        <%--out.println("Please enter the fields.");--%>
-    <%--}--%>
-<%--%>--%>
-
 </body>
 </html>
