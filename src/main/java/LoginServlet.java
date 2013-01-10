@@ -16,6 +16,7 @@ public class LoginServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter(SESSION_ATTR_USER);
         String password = request.getParameter(SESSION_ATTR_PASSWORD);
+        User user = new User();
 
         try {
             List<String> errors = validate(username, password);
@@ -23,18 +24,13 @@ public class LoginServlet extends HttpServlet {
                 request.setAttribute(REQUEST_ATTR_ERRORS, errors);
                 Util.forward(request, response, "/auth/loginPage.jsp");
                 return;
-            }
-            String usernameCleared = username.toLowerCase().trim();
-            String passwordCleared = password.trim();
-            if (usernameCleared.equals("masha") && passwordCleared.equals("admin")) {
-                request.getSession(true).setAttribute(SESSION_ATTR_USER, usernameCleared);
-                request.getSession(true).setAttribute(SESSION_ATTR_PASSWORD, passwordCleared);
-                response.sendRedirect("targetSource.jsp");
-                return;
             } else {
-                response.sendRedirect("/auth/loginPage.jsp?error=true");
-                return;
+                request.getSession(true).setAttribute(SESSION_ATTR_USER, username.toLowerCase().trim());
+                user.setUSER_ATTR_USERNAME(username);
+                user.setUSER_ATTR_PASSWORD(password);
+                Util.forward(request, response, "/targetSource.jsp");
             }
+
         } catch (IOException io) {
             System.out.println("IOException raised in LoginHandler");
         }
@@ -45,14 +41,13 @@ public class LoginServlet extends HttpServlet {
         if (Util.isNullOrEmpty(username) || Util.isNullOrEmpty(password)) {
             errors.add("Login or Password is empty");
         } else {
-            if (!username.equals("masha")) {
+            if (!username.toLowerCase().trim().equals("masha")) {
                 errors.add("Login is invalid");
             }
-            if (!password.equals("admin")) {
+            if (!password.trim().equals("admin")) {
                 errors.add("Password is invalid");
             }
         }
         return errors;
     }
 }
-
