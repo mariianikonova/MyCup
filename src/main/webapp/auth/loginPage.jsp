@@ -1,3 +1,5 @@
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html; encoding=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--<!doctype html public "-//w3c//dtd html 4.0 transitional//en">--%>
@@ -86,24 +88,26 @@
         </div>
 
         <c:if test="${not empty requestScope.errors}">
-            <br/>
+        <br/>
 
-            <div style="color: red">
-                <ul>
-                    <c:forEach items="${requestScope.errors}" var="error">
-                        <li>${error}</li>
-                    </c:forEach>
-                </ul>
-            </div>
+        <div style="color: red">
+        <ul>
+        <c:forEach items="${requestScope.errors}" var="error">
+        <li>${error}</li>
+        </c:forEach>
+        </ul>
+        </div>
         </c:if>
     </div>
     <div id="footer">
     </div>
 </form>
 <%--<%--%>
-<%--if (!request.getParameter("errors").isEmpty()) {--%>
-<%--out.println("Please enter the fields.");--%>
-<%--}--%>
+    <%--List<String> errors;--%>
+    <%--errors = (List<String>) request.getAttribute("errors");--%>
+    <%--if (!errors.isEmpty()) {--%>
+        <%--out.println("Please enter the fields.");--%>
+    <%--}--%>
 <%--%>--%>
 
 </body>
