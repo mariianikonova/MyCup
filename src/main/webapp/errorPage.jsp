@@ -7,16 +7,16 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <style type="text/css">
         .rightSection {
-          background-color: #E6E6FA;
-          float:left;
-          padding: 20px;
-          height:90%;
-          width:50%
+            background-color: #E6E6FA;
+            float: left;
+            padding: 20px;
+            height: 90%;
+            width: 50%
         }
     </style>
 </head>
 <body>
-<c:url var="pathToLoginPage" value="/loginPage.jsp"/>
+<c:url var="pathToLoginPage" value="/auth/loginPage.jsp"/>
 <p><a href="${pathToLoginPage}">Authorization failed. Please,try again.</a></p>
 </body>
 </html>

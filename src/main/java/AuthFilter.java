@@ -1,31 +1,43 @@
-import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-public class AuthFilter implements Filter  {
+public class AuthFilter implements Filter {
 
     public static final String SESSION_ATTR_PASSWORD = "password";
     public static final String SESSION_ATTR_USER = "userId";
+    public static final String INIT_PARAM_IGNORE_STARTS_WITH = "ignorePathStartsWith";
 
-    public void  init(FilterConfig config) throws ServletException{
+    private String ignorePathStartsWith;
+
+    public void init(FilterConfig config) throws ServletException {
+        ignorePathStartsWith = config.getInitParameter(INIT_PARAM_IGNORE_STARTS_WITH);
     }
 
-    public void  doFilter (ServletRequest request, ServletResponse response, FilterChain chain) throws java.io.IOException, ServletException {
-        HttpServletResponse httpResponse = (HttpServletResponse) response;
-          if (request instanceof HttpServletRequest) {
-             HttpSession session = ((HttpServletRequest)request).getSession();
-                if (session != null) {
-                    String password = (String) session.getAttribute(SESSION_ATTR_PASSWORD);
-                    String userId = (String) session.getAttribute(SESSION_ATTR_USER);
-                    if ((password != null) && (userId != null)) {
-                    httpResponse.sendRedirect("targetSource.jsp");
-                    }
-                }
-                else {httpResponse.sendRedirect("loginPage.jsp");
-                }
-          }
-        }
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws java.io.IOException, ServletException {
 
-    public void destroy( ){
+        if (request instanceof HttpServletRequest) {
+            HttpSession session = ((HttpServletRequest) request).getSession(false);
+            String path = ((HttpServletRequest) request).getRequestURI();
+            if (session == null) {
+                Util.forward(request, response, "/index.jsp");
+            } else if (!path.startsWith(ignorePathStartsWith)) {
+                String password = (String) session.getAttribute(SESSION_ATTR_PASSWORD);
+                String userId = (String) session.getAttribute(SESSION_ATTR_USER);
+                if (password != null && userId != null) {
+                    Util.forward(request, response, "/targetSource.jsp");
+                } else {
+                    Util.forward(request, response, "/auth/loginPage.jsp");
+                }
+            }
+        }
+        try {
+            chain.doFilter(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void destroy() {
     }
 }

@@ -9,7 +9,7 @@
 <body>
 You are welcome!
 <a href="/targetSource.jsp">Your target</a>
-<a href="/loginPage.jsp">Login Page</a>
+<a href="/auth/loginPage.jsp">Login Page</a>
 
 </body>
 </html>
