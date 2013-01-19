@@ -2,37 +2,32 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class LoginServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet implements CustomSessionAttributes {
 
-    public static final String SESSION_ATTR_PASSWORD = "password";
-    public static final String SESSION_ATTR_USER = "userId";
     public static final String REQUEST_ATTR_ERRORS = "errors";
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter(SESSION_ATTR_USER);
-        String password = request.getParameter(SESSION_ATTR_PASSWORD);
-        User user = new User();
+        String username = request.getParameter("userId");
+        String password = request.getParameter("password");
+        List<String> errors = validate(username, password);
 
-        try {
-            List<String> errors = validate(username, password);
-            if (!errors.isEmpty()) {
-                request.setAttribute(REQUEST_ATTR_ERRORS, errors);
-                Util.forward(request, response, "/auth/loginPage.jsp");
-                return;
-            } else {
-                request.getSession(true).setAttribute(SESSION_ATTR_USER, username.toLowerCase().trim());
-                user.setUSER_ATTR_USERNAME(username);
-                user.setUSER_ATTR_PASSWORD(password);
-                Util.forward(request, response, "/targetSource.jsp");
-            }
+        if (errors.isEmpty()) {
+            HttpSession session = request.getSession(true);
+            User user = new User(username, password, UserRoleEnum.CREATOR);
+            user.setUserName(username);
+            user.setUserPassword(password);
+            session.setAttribute("newUser", user);
+            Util.forward(request, response, "/userTargets/targetSource.jsp");
 
-        } catch (IOException io) {
-            System.out.println("IOException raised in LoginHandler");
+        } else {
+            request.setAttribute(REQUEST_ATTR_ERRORS, errors);
+            Util.forward(request, response, "/auth/loginPage.jsp");
         }
     }
 

@@ -1,31 +1,32 @@
-/**
- * Created with IntelliJ IDEA.
- * User: mnikonova
- * Date: 1/10/13
- * Time: 12:57 AM
- * To change this template use File | Settings | File Templates.
- */
-public class User {
+import java.io.Serializable;
 
-    private String USER_ATTR_PASSWORD;
-    private String USER_ATTR_USERNAME;
-    private RoleEnum USER_ATTR_ROLE;
+public class User implements Serializable {
 
-    public String getUSER_ATTR_PASSWORD() {
-        return USER_ATTR_PASSWORD;
+    private String userPassword;
+    private String userName;
+    private UserRoleEnum userRole;
+
+    public User(String userPassword, String userName, UserRoleEnum userRole) {
+        this.userPassword = userPassword;
+        this.userName = userName;
+        this.userRole = userRole;
     }
 
-    public void setUSER_ATTR_PASSWORD(String USER_ATTR_PASSWORD) {
-        this.USER_ATTR_PASSWORD = USER_ATTR_PASSWORD;
+    public String getUserPassword() {
+        return userPassword;
     }
 
-    public String getUSER_ATTR_USERNAME() {
-        return USER_ATTR_USERNAME;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
 
-    public void setUSER_ATTR_USERNAME(String USER_ATTR_USERNAME) {
-        this.USER_ATTR_USERNAME = USER_ATTR_USERNAME;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
 }

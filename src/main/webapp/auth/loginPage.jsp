@@ -2,7 +2,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html; encoding=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--<!doctype html public "-//w3c//dtd html 4.0 transitional//en">--%>
+
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>

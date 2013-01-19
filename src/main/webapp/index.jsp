@@ -7,9 +7,20 @@
 </head>
 
 <body>
-You are welcome!
-<a href="/targetSource.jsp">Your target</a>
-<a href="/auth/loginPage.jsp">Login Page</a>
+<p>
+    You are welcome!
+</p>
 
+<p>
+    <a href="/userTargets/targetSource.jsp">Your target</a>
+</p>
+
+<p>
+    <a href="/auth/loginPage.jsp">Login Page</a>
+</p>
+
+<form method="POST" action="/auth/LogoutServlet">
+    <input type="submit" value="Logout">
+</form>
 </body>
 </html>
