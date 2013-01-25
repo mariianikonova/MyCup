@@ -4,12 +4,11 @@ public class User implements Serializable {
 
     private String userPassword;
     private String userName;
-    private UserRoleEnum userRole;
 
-    public User(String userPassword, String userName, UserRoleEnum userRole) {
+
+    public User(String userPassword, String userName) {
         this.userPassword = userPassword;
         this.userName = userName;
-        this.userRole = userRole;
     }
 
     public String getUserPassword() {

@@ -74,19 +74,6 @@
         </div>
         <p/>
 
-        <div class="smallerFontRules" style="margin:3px,5px">
-            &nbsp;Remember Me
-            <input type="checkbox" name="rememberMe" value="remembered"/>
-        </div>
-        <p/>
-
-        <p/>
-
-        <div class="mainFontRules">
-            <input type="submit" name="submitButton" value="Create User" style="margin:3px;" class="buttons"/>
-            <input type="submit" name="forgotPassword" value="Forgot Password" style="margin:3px;" class="buttons"/>
-        </div>
-
         <c:if test="${not empty requestScope.errors}">
             <br/>
 
