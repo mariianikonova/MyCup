@@ -4,6 +4,7 @@ import javax.servlet.ServletResponse;
 import java.io.IOException;
 
 public class Util {
+//    private String userPath;
 
     private Util() {
     } //not meant to be instantiated
@@ -15,5 +16,6 @@ public class Util {
     public static void forward(ServletRequest request, ServletResponse response, String resource) throws IOException, ServletException {
         request.getServletContext().getRequestDispatcher(resource).forward(request, response);
     }
+
 
 }

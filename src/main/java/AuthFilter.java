@@ -7,19 +7,31 @@ public class AuthFilter implements Filter, CustomSessionAttributes {
     }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws java.io.IOException, ServletException {
-
-        if (validateSession(request)) {
-            Util.forward(request, response, "/userTargets/targetSource.jsp");
+        HttpSession session = createSession(request);
+        String path = ((HttpServletRequest) request).getRequestURI();
+        session.setAttribute(SESSION_ATTR_USER_PATH, path);
+        if (isAuthenticated(request)) {
+            chain.doFilter(request, response);
         } else {
             Util.forward(request, response, "/auth/loginPage.jsp");
         }
-        chain.doFilter(request, response);
     }
 
     public void destroy() {
     }
 
-    private boolean validateSession(ServletRequest request) throws java.io.IOException, ServletException {
+    private HttpSession createSession(ServletRequest request) throws java.io.IOException, ServletException {
+        HttpSession session = null;
+        if (request instanceof HttpServletRequest) {
+            session = ((HttpServletRequest) request).getSession(false);
+            if (session == null) {
+                session = ((HttpServletRequest) request).getSession(true);
+            }
+        }
+        return session;
+    }
+
+    private boolean isAuthenticated(ServletRequest request) throws java.io.IOException, ServletException {
         if (request instanceof HttpServletRequest) {
             HttpSession session = ((HttpServletRequest) request).getSession(false);
             if (session != null) {

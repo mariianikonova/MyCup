@@ -13,17 +13,18 @@ public class LoginServlet extends HttpServlet implements CustomSessionAttributes
     public static final String REQUEST_ATTR_ERRORS = "errors";
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter(SESSION_ATTR_USER_ID);
-        String password = request.getParameter(SESSION_ATTR_PASSWORD);
+        String username = request.getParameter("userId");
+        String password = request.getParameter("password");
         List<String> errors = validate(username, password);
 
+        String userPath = (String) request.getSession().getAttribute(SESSION_ATTR_USER_PATH);
+        response.setHeader("Cache-Control", "private, no-store, no-cache, must-revalidate");
+
         if (errors.isEmpty()) {
-            HttpSession session = request.getSession(true);
+            HttpSession session = request.getSession(false);
             User user = new User(username, password);
-            user.setUserName(username);
-            user.setUserPassword(password);
             session.setAttribute(SESSION_ATTR_AUTH_USER, user);
-            Util.forward(request, response, "/userTargets/targetSource.jsp");
+            Util.forward(request, response, userPath);
 
         } else {
             request.setAttribute(REQUEST_ATTR_ERRORS, errors);
@@ -39,11 +40,8 @@ public class LoginServlet extends HttpServlet implements CustomSessionAttributes
         if (Util.isNullOrEmpty(password)) {
             errors.add("Password is empty");
         } else {
-            if (!username.toLowerCase().trim().equals("masha")) {
-                errors.add("Login is invalid");
-            }
-            if (!password.trim().equals("admin")) {
-                errors.add("Password is invalid");
+            if (!username.toLowerCase().trim().equals("masha") || !password.trim().equals("admin")) {
+                errors.add("Credentials are invalid");
             }
         }
         return errors;
