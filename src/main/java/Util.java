@@ -4,7 +4,6 @@ import javax.servlet.ServletResponse;
 import java.io.IOException;
 
 public class Util {
-//    private String userPath;
 
     private Util() {
     } //not meant to be instantiated
