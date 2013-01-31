@@ -21,7 +21,7 @@ public class AuthFilter implements Filter, CustomSessionAttributes {
 
 //            Boolean isCommitted4 = response.isCommitted();
 //            ArrayList list4 = (ArrayList) ((HttpServletResponse) response).getHeaderNames();
-        }  chain.doFilter(request, response);
+        }
 //        Boolean isCommitted3 = response.isCommitted();
 //        ArrayList list3 = (ArrayList) ((HttpServletResponse) response).getHeaderNames();
     }
