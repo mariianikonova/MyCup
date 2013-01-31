@@ -16,5 +16,4 @@ public class Util {
         request.getServletContext().getRequestDispatcher(resource).forward(request, response);
     }
 
-
 }

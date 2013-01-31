@@ -16,9 +16,8 @@ public class LoginServlet extends HttpServlet implements CustomSessionAttributes
         String username = request.getParameter("userId");
         String password = request.getParameter("password");
         List<String> errors = validate(username, password);
-
         String userPath = (String) request.getSession().getAttribute(SESSION_ATTR_USER_PATH);
-        response.setHeader("Cache-Control", "private, no-store, no-cache, must-revalidate");
+
 
         if (errors.isEmpty()) {
             HttpSession session = request.getSession(false);

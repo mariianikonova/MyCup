@@ -1,5 +1,6 @@
 import javax.servlet.*;
 import javax.servlet.http.*;
+import java.util.ArrayList;
 
 public class AuthFilter implements Filter, CustomSessionAttributes {
 
@@ -8,13 +9,21 @@ public class AuthFilter implements Filter, CustomSessionAttributes {
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws java.io.IOException, ServletException {
         HttpSession session = createSession(request);
-        String path = ((HttpServletRequest) request).getRequestURI();
-        session.setAttribute(SESSION_ATTR_USER_PATH, path);
+//        Boolean isCommitted2 = response.isCommitted();
+//        ArrayList list2 = (ArrayList) ((HttpServletResponse) response).getHeaderNames();
         if (isAuthenticated(request)) {
             chain.doFilter(request, response);
         } else {
+            String path = ((HttpServletRequest) request).getRequestURI();
+            session.setAttribute(SESSION_ATTR_USER_PATH, path);
+
             Util.forward(request, response, "/auth/loginPage.jsp");
-        }
+
+//            Boolean isCommitted4 = response.isCommitted();
+//            ArrayList list4 = (ArrayList) ((HttpServletResponse) response).getHeaderNames();
+        }  chain.doFilter(request, response);
+//        Boolean isCommitted3 = response.isCommitted();
+//        ArrayList list3 = (ArrayList) ((HttpServletResponse) response).getHeaderNames();
     }
 
     public void destroy() {
@@ -23,10 +32,7 @@ public class AuthFilter implements Filter, CustomSessionAttributes {
     private HttpSession createSession(ServletRequest request) throws java.io.IOException, ServletException {
         HttpSession session = null;
         if (request instanceof HttpServletRequest) {
-            session = ((HttpServletRequest) request).getSession(false);
-            if (session == null) {
-                session = ((HttpServletRequest) request).getSession(true);
-            }
+            session = ((HttpServletRequest) request).getSession();
         }
         return session;
     }
