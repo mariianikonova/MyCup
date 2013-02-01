@@ -29,6 +29,11 @@
     <url-pattern>/userTargets/*</url-pattern>
   </filter-mapping>
 
+  <filter-mapping>
+    <filter-name>OffCacheFilter</filter-name>
+    <url-pattern>/auth/*</url-pattern>
+  </filter-mapping>
+
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>LoginServlet</servlet-class>
