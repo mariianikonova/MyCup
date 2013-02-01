@@ -23,8 +23,7 @@ public class LoginServlet extends HttpServlet implements CustomSessionAttributes
             HttpSession session = request.getSession(false);
             User user = new User(username, password);
             session.setAttribute(SESSION_ATTR_AUTH_USER, user);
-            Util.forward(request, response, userPath);
-
+            response.sendRedirect(userPath);
         } else {
             request.setAttribute(REQUEST_ATTR_ERRORS, errors);
             Util.forward(request, response, "/auth/loginPage.jsp");

@@ -17,6 +17,7 @@
     <a href="${targetUrl}">Your Page</a>
 
 </p>
+
 <p>
     <c:url var="urlToAuth" value="/auth/loginPage.jsp"/>
     <a href="${urlToAuth}">Login Page</a>

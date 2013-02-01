@@ -9,17 +9,12 @@ public class AuthFilter implements Filter, CustomSessionAttributes {
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws java.io.IOException, ServletException {
         HttpSession session = createSession(request);
-        Boolean isCommitted1 = response.isCommitted();
         if (isAuthenticated(request)) {
             chain.doFilter(request, response);
-            Boolean isCommitted2 = response.isCommitted();
         } else {
-            Boolean isCommitted3 = response.isCommitted();
             String path = ((HttpServletRequest) request).getRequestURI();
             session.setAttribute(SESSION_ATTR_USER_PATH, path);
-            Boolean isCommitted4 = response.isCommitted();
             Util.forward(request, response, "/auth/loginPage.jsp");
-
         }
     }
 

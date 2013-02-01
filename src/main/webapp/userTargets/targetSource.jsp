@@ -5,12 +5,12 @@
 </head>
 <body>
 Welcome to Your source!
-    <c:url var="targetUrl" value="/userTargets/targetSourceNext.jsp"/>
-    <a href="${targetUrl}">Your NEXT Page</a>
+<c:url var="targetUrl" value="/userTargets/targetSourceNext.jsp"/>
+<a href="${targetUrl}">Your NEXT Page</a>
 <c:url var="logoutAction" value="/auth/LogoutServlet"/>
 <form action="${logoutAction}" method="post">
     <input type="submit" value="Logout"/>
 </form>
 </form>
-       </body>
+</body>
 </html>
