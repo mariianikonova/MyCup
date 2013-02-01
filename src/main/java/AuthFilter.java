@@ -1,5 +1,6 @@
 import javax.servlet.*;
 import javax.servlet.http.*;
+import java.util.ArrayList;
 
 public class AuthFilter implements Filter, CustomSessionAttributes {
 
@@ -8,11 +9,11 @@ public class AuthFilter implements Filter, CustomSessionAttributes {
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws java.io.IOException, ServletException {
         HttpSession session = createSession(request);
-        String path = ((HttpServletRequest) request).getRequestURI();
-        session.setAttribute(SESSION_ATTR_USER_PATH, path);
         if (isAuthenticated(request)) {
             chain.doFilter(request, response);
         } else {
+            String path = ((HttpServletRequest) request).getRequestURI();
+            session.setAttribute(SESSION_ATTR_USER_PATH, path);
             Util.forward(request, response, "/auth/loginPage.jsp");
         }
     }
@@ -23,10 +24,7 @@ public class AuthFilter implements Filter, CustomSessionAttributes {
     private HttpSession createSession(ServletRequest request) throws java.io.IOException, ServletException {
         HttpSession session = null;
         if (request instanceof HttpServletRequest) {
-            session = ((HttpServletRequest) request).getSession(false);
-            if (session == null) {
-                session = ((HttpServletRequest) request).getSession(true);
-            }
+            session = ((HttpServletRequest) request).getSession();
         }
         return session;
     }

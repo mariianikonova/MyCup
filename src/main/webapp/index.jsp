@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 
 <html>
@@ -12,15 +13,18 @@
 </p>
 
 <p>
-    <a href="/userTargets/targetSource.jsp">Your target</a>
+    <c:url var="targetUrl" value="/userTargets/targetSource.jsp"/>
+    <a href="${targetUrl}">Your Page</a>
+
 </p>
 
 <p>
-    <a href="/auth/loginPage.jsp">Login Page</a>
+    <c:url var="urlToAuth" value="/auth/loginPage.jsp"/>
+    <a href="${urlToAuth}">Login Page</a>
 </p>
-
-<form method="POST" action="/auth/LogoutServlet">
-    <input type="submit" value="Logout">
+<c:url var="logoutAction" value="/auth/LogoutServlet"/>
+<form action="${logoutAction}" method="post">
+    <input type="submit" value="Logout"/>
 </form>
 </body>
 </html>

@@ -16,16 +16,14 @@ public class LoginServlet extends HttpServlet implements CustomSessionAttributes
         String username = request.getParameter("userId");
         String password = request.getParameter("password");
         List<String> errors = validate(username, password);
-
         String userPath = (String) request.getSession().getAttribute(SESSION_ATTR_USER_PATH);
-        response.setHeader("Cache-Control", "private, no-store, no-cache, must-revalidate");
+
 
         if (errors.isEmpty()) {
             HttpSession session = request.getSession(false);
             User user = new User(username, password);
             session.setAttribute(SESSION_ATTR_AUTH_USER, user);
-            Util.forward(request, response, userPath);
-
+            response.sendRedirect(userPath);
         } else {
             request.setAttribute(REQUEST_ATTR_ERRORS, errors);
             Util.forward(request, response, "/auth/loginPage.jsp");
