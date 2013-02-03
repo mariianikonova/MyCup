@@ -1,8 +1,13 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
-import java.util.ArrayList;
+
 
 public class AuthFilter implements Filter, CustomSessionAttributes {
+
+    private static final Logger log = LoggerFactory.getLogger(AuthFilter.class.getName());
 
     public void init(FilterConfig config) throws ServletException {
     }
@@ -11,6 +16,7 @@ public class AuthFilter implements Filter, CustomSessionAttributes {
         HttpSession session = createSession(request);
         if (isAuthenticated(request)) {
             chain.doFilter(request, response);
+            log.info("LOGGER WORKS!!!!");
         } else {
             String path = ((HttpServletRequest) request).getRequestURI();
             session.setAttribute(SESSION_ATTR_USER_PATH, path);

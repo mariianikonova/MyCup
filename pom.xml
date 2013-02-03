@@ -16,7 +16,7 @@
   </properties>
 
   <build>
-   <finalName>ROOT.war</finalName>
+    <finalName>ROOT.war</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -33,6 +33,22 @@
       <version>6.0</version>
       <scope>provided</scope>
     </dependency>
+
+    <!-- add slf4j interfaces to classpath -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.6.4</version>
+    </dependency>
+
+    <!-- add log4j binding to classpath -->
+    <!-- routes slf4j calls to log4j -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.6.4</version>
+    </dependency>
+
   </dependencies>
 
   <repositories>
