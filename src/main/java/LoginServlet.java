@@ -11,10 +11,12 @@ import java.util.List;
 public class LoginServlet extends HttpServlet implements CustomSessionAttributes {
 
     public static final String REQUEST_ATTR_ERRORS = "errors";
+    public static final String REQUEST_ATTR_USER_ID = "userId";
+    public static final String REQUEST_ATTR_PASSWORD = "password";
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("userId");
-        String password = request.getParameter("password");
+        String username = request.getParameter(REQUEST_ATTR_USER_ID);
+        String password = request.getParameter(REQUEST_ATTR_PASSWORD);
         List<String> errors = validate(username, password);
         String userPath = (String) request.getSession().getAttribute(SESSION_ATTR_USER_PATH);
 
