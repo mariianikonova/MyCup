@@ -1,3 +1,4 @@
+package auth;
 
 public interface CustomSessionAttributes {
 

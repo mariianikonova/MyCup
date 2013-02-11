@@ -1,7 +1,16 @@
+package auth;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import utils.*;
+
+
 public class AuthFilter implements Filter, CustomSessionAttributes {
+
+    private static final Logger log = LoggerFactory.getLogger(AuthFilter.class.getName());
 
     public void init(FilterConfig config) throws ServletException {
     }
@@ -10,10 +19,14 @@ public class AuthFilter implements Filter, CustomSessionAttributes {
         HttpSession session = createSession(request);
         if (isAuthenticated(session)) {
             chain.doFilter(request, response);
+            log.info("AuthFilter WORKS1!!!!");
         } else {
             String path = ((HttpServletRequest) request).getRequestURI();
-            session.setAttribute(SESSION_ATTR_USER_PATH, path);
-            Util.forward(request, response, "/auth/loginPage.jsp");
+            session.setAttribute(CustomSessionAttributes.SESSION_ATTR_USER_PATH, path);
+            log.info("AuthFilter WORKS2!!!!");
+            Util.forward(request, response, "/view/auth/loginPage.jsp");
+
+
         }
     }
 
@@ -30,7 +43,7 @@ public class AuthFilter implements Filter, CustomSessionAttributes {
 
     private boolean isAuthenticated(HttpSession session) throws java.io.IOException, ServletException {
         if (session != null) {
-            User user = (User) session.getAttribute(SESSION_ATTR_AUTH_USER);
+            User user = (User) session.getAttribute(CustomSessionAttributes.SESSION_ATTR_AUTH_USER);
             if (user != null) {
                 return true;
             }

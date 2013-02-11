@@ -5,9 +5,9 @@
 </head>
 <body>
 Welcome to NEXT page in Your source!
-<c:url var="targetUrl" value="/userTargets/targetSource.jsp"/>
+<c:url var="targetUrl"  context="/app"  value="/targetSource"/>
 <a href="${targetUrl}">Your Page</a>
-<c:url var="logoutAction" value="/auth/LogoutServlet"/>
+<c:url var="logoutAction" context="/app"  value="/"/>
 <form action="${logoutAction}" method="post">
     <input type="submit" value="Logout"/>
 </form>
