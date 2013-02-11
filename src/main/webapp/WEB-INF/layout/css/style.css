@@ -1,0 +1,16 @@
+.mainSection {
+    background-color: #90EE90;
+    float: left;
+    width: 40%;
+    padding: 30px;
+    height: 90%;
+    font-family: verdana, arial, sans-serif;
+    font-size: 16px;
+}
+
+.errors {
+    color: red;
+    text-align: left
+}
+
+
