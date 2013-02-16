@@ -4,10 +4,16 @@
 
 <html>
 <head>
-    <link rel="stylesheet" href="/css/style.css" type="text/css"/>
-    <title>
+    <%--<c:url var="cssUrl" context="/app" value="/style.css"/>--%>
+    <%--<link rel="stylesheet" href="${cssUrl}" type="text/css"/>--%>
+        <%--<link rel="stylesheet" href="/css/style.css" type="text/css"/>--%>
+
+        <title>
         <tiles:getAsString name="title"/>
     </title>
+    <c:url var="cssUrl" context="/app" value="/style.css"/>
+    <link rel="stylesheet" href="${cssUrl}" type="text/css"/>
+        <%--<link rel="stylesheet" href="/assets/css/style.css" type="text/css"/>--%>
 </head>
 <body>
 <div class="mainSection">

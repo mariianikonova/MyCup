@@ -1,32 +1,32 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<c:url var="action" context="/app" value="/"/>
-<form action="${action}" method="post">
+<h1>Please Log In to Your Account</h1>
+
+<p>Please use the form below to log in to your account.</p>
+
+<spring:url var="authAction" context="app" value="/j_spring_security_check"/>
+<form action="${authAction}" method="post">
     <div> UserId <p/>
-        <input type="text" name="userId" size="24"/> <br/>
+        <input type="text" name="j_username" size="24"/> <br/>
     </div>
     <div> Password <p/>
-        <input type="password" name="password" size="24" minlength="6"/>
-
+        <input type="password" name="j_password" size="24" minlength="6"/>
+        <c:if test="${param.error == 'true'}">
+        <span>
+        <div class=errors>
+            <p/>
+            Authentication Failure, please try again!
+            <p/>
+        </div>
+        </span>
+        </c:if>
         <div>
 
             <input type="submit" name="submitButton" value="Login"/>
         </div>
     </div>
     <p/>
-
-    <c:if test="${not empty requestScope.errors}">
-        <br/>
-
-        <div class="errors">
-            <ul>
-                <c:forEach items="${requestScope.errors}" var="error">
-                    <li>${error}</li>
-                </c:forEach>
-            </ul>
-        </div>
-    </c:if>
 
 </form>

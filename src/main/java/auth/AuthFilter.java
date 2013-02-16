@@ -25,8 +25,6 @@ public class AuthFilter implements Filter, CustomSessionAttributes {
             session.setAttribute(CustomSessionAttributes.SESSION_ATTR_USER_PATH, path);
             log.info("AuthFilter WORKS2!!!!");
             Util.forward(request, response, "/view/auth/loginPage.jsp");
-
-
         }
     }
 

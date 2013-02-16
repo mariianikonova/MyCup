@@ -20,7 +20,7 @@ public class OffCacheFilter implements Filter {
         response.setHeader("Cache-Control", "post-check=0, pre-check=0"); //IE Specific
         response.setHeader("Cache-Control", "no-store, max-age=0, must-revalidate");
         response.setHeader("Pragma", "no-cache");
-        log.info("OffCacheFilter WORKS!!!!");
+        log.info("OffCacheFilter passed");
         chain.doFilter(servletRequest, servletResponse);
     }
 

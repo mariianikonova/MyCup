@@ -2,12 +2,20 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context.xsd">
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/security
+http://www.springframework.org/schema/security/spring-security-3.1.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+  <mvc:annotation-driven/>
   <context:component-scan base-package="spring"/>
+  <mvc:resources location="/assets/css/**" mapping="/app/styles.css" />
 
   <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
   <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
@@ -25,4 +33,44 @@ http://www.springframework.org/schema/context/spring-context.xsd">
     </property>
   </bean>
 
+  <!-- Spring Security -->
+  <security:http pattern="/app/loginPage" security="none"/>
+  <security:http pattern="/app/logoutPage" security="none"/>
+
+  <security:http>
+    <security:intercept-url pattern="/loginPage/" access="ROLE_USER"/>
+    <security:intercept-url pattern="/app/secureSources/**" access="ROLE_AUTH_USER"/>
+    <security:intercept-url pattern="/app/**" access="ROLE_ADMIN, ROLE_AUTH_USER"/>
+    <security:form-login login-processing-url="/app/j_spring_security_check"
+                         login-page="/app/loginPage"
+                         authentication-failure-url="/app/loginPage?error=true"
+                         default-target-url="/"/>
+    <security:logout logout-url="/app/j_spring_security_logout"
+                     logout-success-url="/app/loginPage"/>
+  </security:http>
+
+  <security:authentication-manager>
+    <security:authentication-provider>
+      <security:user-service id="userService">
+        <security:user name="user" password="user" authorities="ROLE_AUTH_USER"/>
+        <security:user name="masha" password="admin" authorities="ROLE_ADMIN"/>
+      </security:user-service>
+    </security:authentication-provider>
+  </security:authentication-manager>
+
+  <mvc:interceptors>
+    <bean id="webContentInterceptor" class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+      <property name="cacheSeconds" value="0"/>
+      <property name="useExpiresHeader" value="true"/>
+      <property name="useCacheControlHeader" value="true"/>
+      <property name="useCacheControlNoStore" value="true"/>
+    </bean>
+  </mvc:interceptors>
+
 </beans>
+
+
+
+
+
+

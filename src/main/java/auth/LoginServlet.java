@@ -19,6 +19,8 @@ public class LoginServlet extends HttpServlet implements CustomSessionAttributes
     public static final String REQUEST_ATTR_ERRORS = "errors";
     public static final String REQUEST_ATTR_USER_ID = "userId";
     public static final String REQUEST_ATTR_PASSWORD = "password";
+    public static final String REQUEST_PARAM_USER = "masha";
+    public static final String REQUEST_PARAM_PASSWORD = "admin";
 
     private static final Logger log = LoggerFactory.getLogger(AuthFilter.class.getName());
 
@@ -50,7 +52,7 @@ public class LoginServlet extends HttpServlet implements CustomSessionAttributes
         if (Util.isNullOrEmpty(password)) {
             errors.add("Password is empty");
         } else {
-            if (!username.toLowerCase().trim().equals("masha") || !password.trim().equals("admin")) {
+            if (!username.toLowerCase().trim().equals(REQUEST_PARAM_USER) || !password.trim().equals(REQUEST_PARAM_PASSWORD)) {
                 errors.add("Credentials are invalid");
             }
         }
