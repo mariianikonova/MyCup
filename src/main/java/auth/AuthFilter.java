@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import utils.*;
+import auth.utils.*;
 
 
 public class AuthFilter implements Filter, CustomSessionAttributes {

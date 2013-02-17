@@ -15,7 +15,6 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd
 
   <mvc:annotation-driven/>
   <context:component-scan base-package="spring"/>
-  <mvc:resources location="/assets/css/**" mapping="/app/styles.css" />
 
   <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
   <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
@@ -58,6 +57,7 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd
     </security:authentication-provider>
   </security:authentication-manager>
 
+  <!-- Spring Security: cache-off configuration -->
   <mvc:interceptors>
     <bean id="webContentInterceptor" class="org.springframework.web.servlet.mvc.WebContentInterceptor">
       <property name="cacheSeconds" value="0"/>

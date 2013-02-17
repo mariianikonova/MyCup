@@ -6,7 +6,7 @@
     height: 90%;
     font-family: verdana, arial, sans-serif;
     font-size: 16px;
-    }
+}
 
 .errors {
     color: red;
@@ -14,5 +14,18 @@
     font-family: verdana, arial, sans-serif;
     font-size: 18px;
 }
+
+#submit {
+    color: #fff;
+    width: 135px;
+    height: 60px;
+    border: none;
+    margin: 0;
+    padding: 0;
+    background: #0c0;
+    font-family: verdana, arial, sans-serif;
+    font-size: 16px;
+}
+
 
 
