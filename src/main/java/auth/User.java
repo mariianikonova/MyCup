@@ -7,18 +7,10 @@ public class User implements Serializable {
 
     private String userPassword;
     private String userName;
-    private String userRole;
-
-    public User(String userPassword, String userName, String userRole) {
-        this.userPassword = userPassword;
-        this.userName = userName;
-        this.userName = userRole;
-    }
 
     public User(String userPassword, String userName) {
         this.userPassword = userPassword;
         this.userName = userName;
-
     }
 
     public String getUserPassword() {
@@ -32,7 +24,6 @@ public class User implements Serializable {
     public String getUserName() {
         return userName;
     }
-
 
     public void setUserName(String userName) {
         this.userName = userName;
