@@ -13,7 +13,7 @@
         <h1>Please Log In to Your Account</h1>
 
         <p>Please use the form below to log in to your account.</p>
-        <spring:url var="authAction" context="app" value="/j_spring_security_check"/>
+        <spring:url var="authAction" value="/app/j_spring_security_check"/>
         <form action="${authAction}" method="post">
             <div> UserId <p/>
                 <input type="text" name="j_username" size="24"/> <br/>

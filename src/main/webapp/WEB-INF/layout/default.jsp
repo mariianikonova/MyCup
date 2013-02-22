@@ -7,7 +7,7 @@
     <title>
         <tiles:getAsString name="title"/>
     </title>
-    <link rel="stylesheet" href="/assets/css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="/assets/customCss/style.css" type="text/css"/>
 </head>
 <body>
 <div class="mainSection">

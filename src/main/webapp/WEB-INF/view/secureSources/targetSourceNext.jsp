@@ -10,9 +10,9 @@
     </tiles:putAttribute>
     <tiles:putAttribute name="content">
         Welcome to NEXT page in Your source!
-        <c:url var="targetUrl" context="/app" value="/targetSource"/>
+        <c:url var="targetUrl" value="/app/targetSource"/>
         <a href="${targetUrl}">Your Page</a>
-        <c:url var="logoutAction" context="/app" value="/j_spring_security_logout"/>
+        <c:url var="logoutAction" value="/app/j_spring_security_logout"/>
         <form action="${logoutAction}" method="post">
             <input type="submit" value="Logout" id="submit"/>
         </form>
