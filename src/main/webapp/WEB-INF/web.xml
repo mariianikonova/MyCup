@@ -13,7 +13,6 @@
     </welcome-file-list>
 
     <!--Spring Global Listener configuration-->
-
     <listener>
         <listener-class>
             org.springframework.web.context.ContextLoaderListener
