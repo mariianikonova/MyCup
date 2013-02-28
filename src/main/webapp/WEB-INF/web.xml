@@ -39,14 +39,14 @@
         <url-pattern>/app/*</url-pattern>
     </servlet-mapping>
 
-    <!--Logging configuration-->
-    <!--<context-param>
-        <param-name>log4jConfigLocation</param-name>
-        <param-value>/WEB-INF/resources/log4j.properties</param-value>
-    </context-param>
-    <listener>
-        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
-    </listener>-->
+    <!--&lt;!&ndash;Logging configuration&ndash;&gt;-->
+    <!--<context-param>-->
+        <!--<param-name>log4jConfigLocation</param-name>-->
+        <!--<param-value>/WEB-INF/resources/log4j.properties</param-value>-->
+    <!--</context-param>-->
+    <!--<listener>-->
+        <!--<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>-->
+    <!--</listener>-->
 
     <!--Spring Security Dispatcher configuration-->
     <filter>
